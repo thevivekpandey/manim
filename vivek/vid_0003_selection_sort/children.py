@@ -1,5 +1,6 @@
 from manimlib.imports import *
 import numpy as np
+from vivek.vid_0003_selection_sort.sortable import Sortable
 
 class Limb(VGroup):
     def __init__(self, back, side, t, **kwargs):
@@ -90,55 +91,21 @@ class Scene1(Scene):
         self.wait(15)
         self.play(FadeOut(text), FadeOut(subtext))
  
-class Scene2(Scene):
-    def update_seq(self, target, pos):
-        saved = self.seq[target]
-        for i in range(target, pos, -1):
-            self.seq[i] = self.seq[i - 1]
-        self.seq[pos] = saved
-
-    def move(self, target, pos):
-        target_stick = self.stick_men[self.seq[target]]
-        pos_stick = self.stick_men[self.seq[pos]]
-
-        target_stick.generate_target()
-        target_stick.target.next_to(target_stick, UP)
-        self.play(MoveToTarget(target_stick))
-
-        target_stick.generate_target()
-        target_stick.target.next_to(pos_stick, LEFT + UP)
-        self.play(MoveToTarget(target_stick))
-
-        target_stick.generate_target()
-        target_stick.target.next_to(pos_stick, LEFT)
-        self.play(MoveToTarget(target_stick))
-
-        self.stick_men[self.seq[target - 1]].generate_target()
-        self.stick_men[self.seq[target - 1]].target.next_to(self.stick_men[self.seq[target - 1]], RIGHT, buff=0.6*LARGE_BUFF )
-        self.play(MoveToTarget(self.stick_men[self.seq[target - 1]]))
-
-        for i in range(target - 2, pos - 1, -1):
-            self.stick_men[self.seq[i]].generate_target()
-            self.stick_men[self.seq[i]].target.next_to(self.stick_men[self.seq[i + 1]], LEFT, buff=0.6*LARGE_BUFF )
-            self.play(MoveToTarget(self.stick_men[self.seq[i]]))
-         
-        target_stick.generate_target()
-        target_stick.target.next_to(pos_stick, LEFT, buff=0.6*LARGE_BUFF )
-        self.play(MoveToTarget(target_stick))
-        self.update_seq(target, pos)
-
+class Children(Scene, Sortable):
+    def setup(self):
+        nums = [23, 28, 14, 33, 20, 17, 25]
+        self.seq = [n for n in range(len(nums))]
+        lengths = [num / 20 for num in nums]
+        self.stick_men = VGroup(*[StickMan(l) for l in lengths]).arrange(RIGHT, buff = 0.6 * LARGE_BUFF, aligned_edge = DOWN)
+        self.items = self.stick_men #to propagate to Sortable class
+        
     def construct(self):
-
         platform = Line(LEFT, RIGHT)
         platform.set_width(8)
         platform.to_edge(DOWN, buff = 2.95 * LARGE_BUFF)
         platform.to_edge(RIGHT)
         self.play(Write(platform))
 
-        nums = [23, 28, 14, 33, 20, 17, 25]
-        self.seq = [n for n in range(len(nums))]
-        lengths = [num / 20 for num in nums]
-        self.stick_men = VGroup(*[StickMan(l) for l in lengths]).arrange(RIGHT, buff = 0.6 * LARGE_BUFF, aligned_edge = DOWN)
         self.stick_men.to_edge(RIGHT)
         self.play(Write(self.stick_men))
 
