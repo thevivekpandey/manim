@@ -354,7 +354,7 @@ class ThetaVsTAxes(Axes):
 
 
 # Scenes
-class IntroducePendulum(PiCreatureScene, MovingCameraScene):
+class IntroducePendulum(Scene):
     CONFIG = {
         "pendulum_config": {
             "length": 3,
@@ -378,17 +378,18 @@ class IntroducePendulum(PiCreatureScene, MovingCameraScene):
     }
 
     def setup(self):
-        MovingCameraScene.setup(self)
-        PiCreatureScene.setup(self)
+        pass
+        #MovingCameraScene.setup(self)
+        #PiCreatureScene.setup(self)
 
     def construct(self):
         self.add_pendulum()
         # self.label_pi_creatures()
         self.label_pendulum()
-        self.add_graph()
-        self.label_function()
-        self.show_graph_period()
-        self.show_length_and_gravity()
+        #self.add_graph()
+        #self.label_function()
+        #self.show_graph_period()
+        #self.show_length_and_gravity()
         # self.tweak_length_and_gravity()
 
     def create_pi_creatures(self):
@@ -403,12 +404,12 @@ class IntroducePendulum(PiCreatureScene, MovingCameraScene):
     def add_pendulum(self):
         pendulum = self.pendulum = Pendulum(**self.pendulum_config)
         pendulum.start_swinging()
-        frame = self.camera_frame
-        frame.save_state()
-        frame.scale(0.5)
-        frame.move_to(pendulum.dashed_line)
-
-        self.add(pendulum, frame)
+        #frame = self.camera_frame
+        #frame.save_state()
+        #frame.scale(0.5)
+        #frame.move_to(pendulum.dashed_line)
+        #self.add(pendulum, frame)
+        self.add(pendulum)
 
     def label_pi_creatures(self):
         randy, morty = self.pi_creatures
@@ -447,25 +448,25 @@ class IntroducePendulum(PiCreatureScene, MovingCameraScene):
 
     def label_pendulum(self):
         pendulum = self.pendulum
-        randy, morty = self.pi_creatures
+        #randy, morty = self.pi_creatures
         label = pendulum.theta_label
         rect = SurroundingRectangle(label, buff=0.5 * SMALL_BUFF)
         rect.add_updater(lambda r: r.move_to(label))
 
-        for pi in randy, morty:
-            pi.add_updater(
-                lambda m: m.look_at(pendulum.weight)
-            )
+        #for pi in randy, morty:
+        #    pi.add_updater(
+        #        lambda m: m.look_at(pendulum.weight)
+        #    )
 
-        self.play(randy.change, "pondering")
-        self.play(morty.change, "pondering")
-        self.wait(3)
-        randy.clear_updaters()
-        morty.clear_updaters()
+        #self.play(randy.change, "pondering")
+        #self.play(morty.change, "pondering")
+        #self.wait(3)
+        #randy.clear_updaters()
+        #morty.clear_updaters()
         self.play(
-            ShowCreationThenFadeOut(rect),
+            ShowCreationThenFadeOut(label),
         )
-        self.wait()
+        #self.wait()
 
     def add_graph(self):
         axes = self.axes = ThetaVsTAxes(**self.theta_vs_t_axes_config)

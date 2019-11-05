@@ -6,6 +6,7 @@ VIDEO_DIR = ""
 VIDEO_OUTPUT_DIR = ""
 TEX_DIR = ""
 TEXT_DIR = ""
+FILE_DIR = 'manimlib/files/'
 
 
 def initialize_directories(config):
