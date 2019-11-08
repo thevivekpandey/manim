@@ -1,0 +1,61 @@
+Opening
+-------
+Welcome again to Computer Science by Pandey. One video, one snack
+sized topic.
+
+SelectionSortIntro: (to be done) (animation of selection sort)
+--------------------------------
+In this video we will learn Selection sort. Selection sort is the most
+basic of the sorting algorithms. So, let's get started.
+
+RealWorld
+---------
+When thinking about computer algorithms, many times it is useful
+to leave the world of data structures and computers and think what you would do
+if an analogous problem in real world were presented to you.
+
+So, let's say, there were n students standing in a line and you wanted
+to arrange them in the order of their heights, with the shortest student
+at the front and the tallest one at the back.
+
+A very intuitive thing to do would be to first pick up the shortest student
+and bring it to the front. You have already made some progress. Now, you
+pick up the next shortest student an bring him or her just behind the
+shortest student. You keep on repeating this process till the last student
+and you have arranged the students in the order of their heights.
+
+At each step you have a part of the queue which is already sorted and you 
+are "select" the shortest student in the remaining queue. That's why it
+is called "selection" sort.
+
+Now coming back to the world of data structures and algorithms, we do
+a very similar process with the arrays. At each step, one part of the array
+is sorted. You select the smallest element in the remaining part and then
+put it at the beginning of the remaining part.
+
+There is one detail tough. This is where computer world diverges a little
+from the real world. At each step, all that we want is to bring the next
+smallest element at its correct place. We can do better than shifting all
+of the intermediate elements by one place. We can just swap the smallest
+element with the element where we want to put the smallest element. That
+way a lot of movement of elements is avoided.
+
+Now that we know the algorithm for selection sort, let's write the code for
+it.
+
+We will go over each slot of the array, putting the correct element in the
+slot, so there is a loop from 0 to n - 1. 
+
+When we are in the loop for a certain value of i, we want to know the index
+at which the smallest element in the rest of array resides.
+
+we start by assuming that it resides at ith element itself. That's just a provisional 
+assumption. We  iterate over the rest of the array, and if we find a
+smaller element, we update our assumption about the location of smallest element.
+
+Finally we swap the element at ith place with the element at the location where
+smallest element resides.
+
+Great. So, this is selection sort.
+
+Let's have a look at the time complexity of selection sort.
