@@ -40,8 +40,7 @@ of the intermediate elements by one place. We can just swap the smallest
 element with the element where we want to put the smallest element. That
 way a lot of movement of elements is avoided.
 
-Now that we know the algorithm for selection sort, let's write the code for
-it.
+Now that we know the algorithm for selection sort, let's write the code for it.
 
 We will go over each slot of the array, putting the correct element in the
 slot, so there is a loop from 0 to n - 1. 

@@ -1,6 +1,7 @@
 from manimlib.imports import *
 import numpy as np
 from vivek.vid_0003_selection_sort.sortable import Sortable
+from vivek.vid_0003_selection_sort.movable import Movable
 
 class Limb(VGroup):
     def __init__(self, back, side, t, **kwargs):
@@ -80,15 +81,36 @@ class StickMan(VGroup):
         self.add(right_leg)
 
 class Children(Scene, Sortable):
-    def move_stick_man(self, target, pos):
-        self.stick_men[self.seq[target]].set_color(RED)
-        self.move(target, pos)
+    def move_stick_man(self, target, pos, partial=False, set_color=True):
+        #if set_color:
+        #    self.stick_men[self.seq[target]].set_color(RED)
+        self.move(target, pos, partial)
 
-    def show_little_arrow_and_remark(self):
-        pass
+    def move_stick_man1(self, target, pos, partial=False, set_color=True):
+        #if set_color:
+        #    self.stick_men[self.seq[target]].set_color(RED)
+        self.move1(target, pos, partial)
 
+    def make_little_arrow_and_remark(self):
+        self.arrows = []
+        for i in range(4):
+            a = Arrow()
+            a.set_length(0.5)
+            a.set_color(YELLOW)
+            self.arrows.append(a)
+        self.g = VGroup(*self.arrows).arrange(RIGHT, buff=0.70*LARGE_BUFF)
+        self.b = Brace(self.g, DOWN)
+        self.text = TextMobject("Multiple shifts")
+        self.tot = VGroup(self.b, self.text).arrange(DOWN)
+        self.tot.next_to(self.boxes[1], DOWN + 0.5 * RIGHT)
+        self.b1 = Brace(self.tot, RIGHT)
+     
+        self.play(FadeIn(self.tot))
+        self.play(FadeIn(self.b1))
+  
     def construct(self):
-        self.nums = nums = [23, 20, 17, 14, 28, 33, 25]
+        #Step 1: Children play
+        self.nums = nums = [23, 25, 33, 28, 14, 17, 20]
         self.seq = [n for n in range(len(nums))]
         lengths = [num / 20 for num in nums]
         self.stick_men = VGroup(*[StickMan(l) for l in lengths]).arrange(RIGHT, buff = 0.6 * LARGE_BUFF, aligned_edge = DOWN)
@@ -96,17 +118,20 @@ class Children(Scene, Sortable):
         self.multiple = 1.17
         self.delta = 0.5
         self.adjust = True
-        
+
         self.platform = Line(LEFT, RIGHT)
         self.platform.set_width(8)
         self.platform.to_edge(DOWN, buff = 2.95 * LARGE_BUFF)
         self.play(Write(self.platform))
         self.play(Write(self.stick_men))
 
-        #self.move_stick_man(2, 0)
+        #self.move_stick_man(4, 0)
         #self.move_stick_man(5, 1)
-        #self.move_stick_man(5, 2)
+        #self.move_stick_man(3, 2)
+        #self.move_stick_man(3, 3)
         #self.move_stick_man(6, 4)
+        #self.move_stick_man(6, 5)
+        #self.move_stick_man(6, 6)
 
         self.platform.generate_target()
         self.platform.target.shift(2 * UP)
@@ -116,7 +141,7 @@ class Children(Scene, Sortable):
 
         self.play(MoveToTarget(self.platform), MoveToTarget(self.stick_men))
 
-
+        # Step 2: array play
         num_elems = len(self.nums)
         squares = [Square(side_length=1.15) for i in range(num_elems)]
         self.boxes = VGroup(*squares).arrange(RIGHT, buff=0)
@@ -125,18 +150,49 @@ class Children(Scene, Sortable):
         self.array = VGroup(*num_mobjects).arrange(RIGHT, buff=6.8*SMALL_BUFF)
         self.array.next_to(self.platform, DOWN, buff=14 * SMALL_BUFF)
     
-        self.play(Write(self.boxes))
+        #self.play(Write(self.boxes))
+        self.play(FadeIn(self.boxes))
 
         transforms = [Transform(self.stick_men[i], self.array[i]) for i in range(num_elems)]
         transforms.append(FadeOut(self.platform))
         self.play(*transforms)
 
-        # Reset for array play
-        self.nums = nums = [23, 20, 17, 14, 28, 33, 25]
+        self.nums = nums = [23, 25, 33, 28, 14, 17, 20]
+        self.multiple = 1.17
         self.delta = 0
         self.adjust = False
         self.seq = [n for n in range(len(nums))]
-        self.stick_men = self.array
-        self.move_stick_man(4, 1)
+        #self.items1 = self.array
+        self.move_stick_man(4, 0, set_color=False)
+        self.move_stick_man(5, 1, partial=True, set_color=False)
 
-        self.show_little_arrow_and_remark()
+        self.make_little_arrow_and_remark()
+        self.move_left(1, 4)
+        self.target_move_down_and_right(1, 5)
+        self.target_move_up_down(1, 5)
+        self.seq[1], self.seq[5] = self.seq[5], self.seq[1]
+
+        print(self.seq)
+        self.swap(6, 2)
+        self.swap(5, 3)
+        #self.swap(6, 4)
+        #self.swap(6, 5)
+
+        #self.swap(5, 6)
+        #self.swap(4, 6)
+        #self.swap(3, 5)
+        #self.swap(2, 6)
+        #self.swap(1, 5)
+        #self.swap(0, 4)
+
+        #Step 3 Now the algo will be shown
+        self.boxes.generate_target()
+        self.boxes.target.shift(UP)
+
+        #self.stick_men1.generate_target()
+        #self.stick_men1.target.shift(UP)
+
+        self.array.generate_target()
+        self.array.target.shift(UP)
+
+        self.play(FadeOut(self.boxes), FadeOut(self.array), FadeOut(self.stick_men))
