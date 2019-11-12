@@ -1,7 +1,6 @@
 from manimlib.imports import *
 import numpy as np
 from vivek.vid_0003_selection_sort.sortable import Sortable
-from vivek.vid_0003_selection_sort.movable import Movable
 
 class Limb(VGroup):
     def __init__(self, back, side, t, **kwargs):

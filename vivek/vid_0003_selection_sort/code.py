@@ -9,4 +9,5 @@ class Code(VGroup):
          text += line + "\\newline "
       text += "}"
       self.code = TexMobject(text)
+      self.code.scale(0.8)
       self.add(self.code)

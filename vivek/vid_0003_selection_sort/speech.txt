@@ -48,8 +48,8 @@ slot, so there is a loop from 0 to n - 1.
 When we are in the loop for a certain value of i, we want to know the index
 at which the smallest element in the rest of array resides.
 
-we start by assuming that it resides at ith element itself. That's just a provisional 
-assumption. We  iterate over the rest of the array, and if we find a
+we start by assuming that it resides at ith element itself. That's just a 
+provisional assumption. We  iterate over the rest of the array, and if we find a
 smaller element, we update our assumption about the location of smallest element.
 
 Finally we swap the element at ith place with the element at the location where
