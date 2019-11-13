@@ -1,11 +1,5 @@
-Opening
--------
-Welcome again to Computer Science by Pandey. One video, one snack
-sized topic.
-
-SelectionSortIntro: (to be done) (animation of selection sort)
---------------------------------
-In this video we will learn Selection sort. Selection sort is the most
+Hey, Pandey here. In this video we will learn Selection sort. Selection 
+sort is the most
 basic of the sorting algorithms. So, let's get started.
 
 RealWorld
@@ -24,6 +18,7 @@ pick up the next shortest student an bring him or her just behind the
 shortest student. You keep on repeating this process till the last student
 and you have arranged the students in the order of their heights.
 
+Hello, you have just discovered selection sort!
 At each step you have a part of the queue which is already sorted and you 
 are "select" the shortest student in the remaining queue. That's why it
 is called "selection" sort.
@@ -40,21 +35,53 @@ of the intermediate elements by one place. We can just swap the smallest
 element with the element where we want to put the smallest element. That
 way a lot of movement of elements is avoided.
 
+We keep on repeating bringing the smallest element from the remaining
+list to the approprite place and when we reach the end of the array, we are done!
+
+Alright,
 Now that we know the algorithm for selection sort, let's write the code for it.
+Let's work with a concrete example. We have an array of size 7.
 
 We will go over each slot of the array, putting the correct element in the
 slot, so there is a loop from 0 to n - 1. 
 
-When we are in the loop for a certain value of i, we want to know the index
-at which the smallest element in the rest of array resides.
+So, there will be a loop from i = 0 to i = n -1
 
-we start by assuming that it resides at ith element itself. That's just a 
-provisional assumption. We  iterate over the rest of the array, and if we find a
-smaller element, we update our assumption about the location of smallest element.
+To begin with, we fix i = 0.
+We have another variable j which we iterate from i to n-1. In another variable
+called jmin we store the index of smallest value we have encountered thus
+far. As we scan the array, if we encounter a smaller element, we update
+jmin.
 
-Finally we swap the element at ith place with the element at the location where
-smallest element resides.
+When we j reaches 6, we have scanned all the unsorted elements. We know that
+the element at jmin is the smallest element. In this case, element at 4th
+location, i.e. 14, is the smallest element. We swap at with the element at ith
+i.e. 0th location. These three lines of code swap the elements at location i
+and jmin. As an aside, do you think we can do a swap without the temporary
+variable? Mention in the comment what you think!
 
-Great. So, this is selection sort.
+ok. Now that we have go the first element correct, we increment i to 1 and
+iterate j from 2 to 6. This time, we find jmin to be 5, since 17 is the
+smallest element in the remaining array. We swap 17 with the elemnet at index 1.
+
+We keep on incrementing i and finding the smallest elemnet from ith element
+onwards and swap it with the element at the ith location.
+
+When i reaches 6, the array is sorted.
+
+Great. So, this was selection sort
 
 Let's have a look at the time complexity of selection sort.
+Time complexity of selection sort is fairly easy to determine.
+
+Looking at the code, it is clear that the if statement lies inside the 
+double loop, so that will execute most number of times, and thus, that
+will determinat the complexity of the algorith.
+
+Now, for i = 0, j varies from 0 to n-1, so it takes a total of n values. So,
+for i = 0, the if statment executes, n times. For i = 1, j varies from 1 to n-1,
+giving rise to n -1 executions. We go on like this, till we reach i = n - 1 when there is just one execution of if statement.
+
+We sum up all these numbers that we found out. It is n(n-1)/2, which is an O(n square) experession. Thus, the complexity of selection sort is order n squared.
+
+So, this was selection sort. See you later with more algorithms. Till then, by bye.
