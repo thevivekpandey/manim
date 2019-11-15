@@ -1,22 +1,21 @@
-- RealWorld: Replace 5 birds with variety of things
-- [DONE]stickmen need to be red when they move
-- After coming, students should jump
-- [DONE]Don't jump unnecessarily.
-- Write the text "YOU have discovered selection sort"
-- [DONE]Sorted numbers should be colored
-- Put a cross next to multiple shifts when you say we can do better.
-- In up and down motion while swapping, numbers should got a bit higher/lower.
-- Numbers in algorithm should be same as the one in explanation with array. That way there are more swaps.
-- In outer loop, does i < n also work. Use it if it does.
-- In code, matching braces should be of same color.
-- Can you use syntax highlighting in code?
-- There is enough space to format code better, get rid of squeezed blanks that you got to save space.
-- Below the j arrow, you can tell the comparison which is taking place.
-- Don't fade out yellow rect.
-- Add like/subscribe request at the end
-- Can add few additional points
-- Show animation of sorting at the very beginning
-- Element being compared with A[jmin] should be colored yellow
-
-- Between first and second slides, there is a total black screen. Avoid it.
-- In computer world, three dots should be centered.
+1 - [DONE]stickmen need to be red when they move
+2 - [DONE]Don't jump unnecessarily.
+3 - [DONE]Sorted numbers should be colored
+4 - [DONE]In up and down motion while swapping, numbers should got a bit higher/lower.
+5 - [DONE]There is enough space to format code better, get rid of squeezed blanks that you got to save space.
+21 - [DONE] In computer world, three dots should be centered.
+6 - [DONE] RealWorld: Replace 5 birds with variety of things
+10 - [CANCELLED] Numbers in algorithm should be same as the one in explanation with array. That way there are more swaps.
+9 - [DONE] Put a cross next to multiple shifts when you say we can do better.
+11 - [DONE] In outer loop, does i < n also work. Use it if it does.
+13 - [HARD] Can you use syntax highlighting in code?
+12 - [HARD]In code, matching braces should be of same color.
+20 - [DONE] Between first and second slides, there is a total black screen. Avoid it.
+15 - [DONE] Don't fade out yellow rect.
+14 - [CANCELLED]Below the j arrow, you can tell the comparison which is taking place.
+18 - [DONE] Show animation of sorting at the very beginning
+16 - [CANCELLED] Add like/subscribe request at the end
+17 - Can add few additional points
+7 - After coming, students should jump
+8 - Write the text "YOU have discovered selection sort"
+19- Element being compared with A[jmin] should be colored yellow

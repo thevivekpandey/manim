@@ -83,7 +83,7 @@ class Sortable():
             item.generate_target()
             item.target.shift(self.multiple * LEFT)
         arr = [MoveToTarget(self.items[self.seq[i]]) for i in range(start, start + num)]
-        arr.extend([FadeOut(self.tot), FadeOut(self.b1)])
+        arr.extend([FadeOut(self.tot), FadeOut(self.b1), FadeOut(self.cross)])
         self.play(*arr)
 
     def swap(self, later, former):

@@ -13,6 +13,30 @@ class Indicator(VGroup):
         self.add(self.arrow, self.index_head, self.index)
         self.scale(0.8)
 
+class MyCode(VGroup):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        lines = [
+            "for (i = 0; i < n; i++) \{",
+            "SPACEjmin = i",
+            "SPACEfor (j = i; j < n; j++) \{",
+            "SPACESPACEif (A[j] < A[jmin]) \{",
+            "SPACESPACESPACEjmin = j",
+            "SPACESPACE\}",
+            "SPACE\}",
+            "SPACEtemp = A[i]",
+            "SPACEA[i] = A[jmin]",
+            "SPACEA[jmin] = temp",
+            "\}"
+        ]
+
+        self.codes = [Code(line) for line in lines]
+        self.b = VGroup(*self.codes).arrange(DOWN).to_edge(RIGHT + DOWN)
+        for i in range(0, len(self.codes)):
+            x_diff = 0.8 + 0.65 * lines[i].count('SPACE')
+            self.codes[i].align_to((x_diff, 0, 0), LEFT)
+        self.add(self.b)
+
 class Algorithm(Scene):
     def make_braces(self):
         self.braces = {}
@@ -84,7 +108,7 @@ class Algorithm(Scene):
             self.wait(sleep_time)
 
     def write_code_lines(self, *indices):
-        writes = [Write(self.b[i]) for i in indices]
+        writes = [Write(self.my_code.b[i]) for i in indices]
         self.play(*writes)
 
     def swap(self, later, former, run_time=1):
@@ -122,7 +146,7 @@ class Algorithm(Scene):
         self.nums1 = [23, 25, 19, 28, 14, 17, 20]
         self.seq = [0, 1, 2, 3, 4, 5, 6]
         side_length = 0.8
-        self.squares1 = [Square(side_length=side_length) for i in range(self.num_elems1)]
+        self.squares1 = [Square(side_length=side_length, color=YELLOW) for i in range(self.num_elems1)]
         self.boxes1 = VGroup(*self.squares1).arrange(RIGHT, buff=0).to_edge(TOP, buff=SMALL_BUFF)
 
         g = VGroup(self.boxes1).arrange(RIGHT).to_edge(LEFT, buff=15 * SMALL_BUFF)
@@ -150,25 +174,26 @@ class Algorithm(Scene):
                   Write(self.index_i.index)
                  )
 
-        lines = [
-            "for(i=0;i<n-1;i++) \{",
-            "SPACEjmin = i",
-            "SPACEfor(j=i;j<n;j++) \{",
-            "SPACESPACEif(A[j]<A[jmin]) \{",
-            "SPACESPACESPACEjmin = j",
-            "SPACESPACE\}",
-            "SPACE\}",
-            "SPACEtemp = A[i]",
-            "SPACEA[i] = A[jmin]",
-            "SPACEA[jmin] = temp",
-            "\}"
-        ]
+        #lines = [
+        #    "for (i = 0; i < n; i++) \{",
+        #    "SPACEjmin = i",
+        #    "SPACEfor (j = i; j < n; j++) \{",
+        #    "SPACESPACEif (A[j] < A[jmin]) \{",
+        #    "SPACESPACESPACEjmin = j",
+        #    "SPACESPACE\}",
+        #    "SPACE\}",
+        #    "SPACEtemp = A[i]",
+        #    "SPACEA[i] = A[jmin]",
+        #    "SPACEA[jmin] = temp",
+        #    "\}"
+        #]
 
-        codes = [Code(line) for line in lines]
-        self.b = VGroup(*codes).arrange(DOWN).to_edge(RIGHT + DOWN)
-        for i in range(0, len(codes)):
-            x_diff = 1.4 + 0.65 * lines[i].count('SPACE')
-            codes[i].align_to((x_diff, 0, 0), LEFT)
+        #codes = [Code(line) for line in lines]
+        #self.b = VGroup(*codes).arrange(DOWN).to_edge(RIGHT + DOWN)
+        #for i in range(0, len(codes)):
+        #    x_diff = 0.8 + 0.65 * lines[i].count('SPACE')
+        #    codes[i].align_to((x_diff, 0, 0), LEFT)
+        self.my_code = MyCode()
 
         self.change_indicator('i', 1)
         self.change_indicator('i', 2)
@@ -253,49 +278,50 @@ class Algorithm(Scene):
         self.swap(1, 5)
         self.wait(1)
         
-        self.change_indicator('i', 2, run_time=0.5)
-        self.change_indicator('j', 2, run_time=0.5)
-        self.transform_jmin(2, 19, run_time=0.5)
-        self.change_indicator('j', 3, run_time=0.5)
-        self.change_indicator('j', 4, run_time=0.5)
-        self.change_indicator('j', 5, run_time=0.5)
-        self.change_indicator('j', 6, run_time=0.5)
-        self.play(ApplyMethod(self.array1[self.seq[2]].set_color, RED))
+        self.change_indicator('i', 2, run_time=0.35)
+        self.change_indicator('j', 2, run_time=0.35)
+        self.transform_jmin(2, 19, run_time=0.35)
+        self.change_indicator('j', 3, run_time=0.35)
+        self.change_indicator('j', 4, run_time=0.35)
+        self.change_indicator('j', 5, run_time=0.35)
+        self.change_indicator('j', 6, run_time=0.35)
+        self.play(ApplyMethod(self.array1[self.seq[2]].set_color, RED), run_time=0.35)
 
-        self.change_indicator('i', 3, run_time=0.5)
-        self.transform_jmin(3, 28, run_time=0.5)
-        self.change_indicator('j', 3, run_time=0.5)
-        self.change_indicator('j', 4, run_time=0.5)
-        self.transform_jmin(4, 23, run_time=0.5)
-        self.change_indicator('j', 5, run_time=0.5)
-        self.change_indicator('j', 6, run_time=0.5)
-        self.transform_jmin(6, 20, run_time=0.5)
-        self.swap(3, 6, run_time=0.5)
+        self.change_indicator('i', 3, run_time=0.35)
+        self.transform_jmin(3, 28, run_time=0.35)
+        self.change_indicator('j', 3, run_time=0.35)
+        self.change_indicator('j', 4, run_time=0.35)
+        self.transform_jmin(4, 23, run_time=0.35)
+        self.change_indicator('j', 5, run_time=0.35)
+        self.change_indicator('j', 6, run_time=0.35)
+        self.transform_jmin(6, 20, run_time=0.35)
+        self.swap(3, 6, run_time=0.35)
 
-        self.change_indicator('i', 4, run_time=0.5)
-        self.change_indicator('j', 4, run_time=0.5)
-        self.transform_jmin(4, 23, run_time=0.5)
-        self.change_indicator('j', 5, run_time=0.5)
-        self.change_indicator('j', 6, run_time=0.5)
-        self.play(ApplyMethod(self.array1[self.seq[4]].set_color, RED))
+        self.change_indicator('i', 4, run_time=0.35)
+        self.change_indicator('j', 4, run_time=0.35)
+        self.transform_jmin(4, 23, run_time=0.35)
+        self.change_indicator('j', 5, run_time=0.35)
+        self.change_indicator('j', 6, run_time=0.35)
+        self.play(ApplyMethod(self.array1[self.seq[4]].set_color, RED), run_time=0.35)
 
-        self.change_indicator('i', 5, run_time=0.5)
-        self.change_indicator('j', 5, run_time=0.5)
-        self.transform_jmin(5, 25, run_time=0.5)
-        self.change_indicator('j', 6, run_time=0.5)
-        self.play(ApplyMethod(self.array1[self.seq[5]].set_color, RED))
+        self.change_indicator('i', 5, run_time=0.35)
+        self.change_indicator('j', 5, run_time=0.35)
+        self.transform_jmin(5, 25, run_time=0.35)
+        self.change_indicator('j', 6, run_time=0.35)
+        self.play(ApplyMethod(self.array1[self.seq[5]].set_color, RED), run_time=0.35)
 
-        self.change_indicator('i', 6, run_time=0.5)
-        self.change_indicator('j', 6, run_time=0.5)
-        self.transform_jmin(6, 28, run_time=0.5)
-        self.play(ApplyMethod(self.array1[self.seq[6]].set_color, RED))
+        self.change_indicator('i', 6, run_time=0.35)
+        self.change_indicator('j', 6, run_time=0.35)
+        self.transform_jmin(6, 28, run_time=0.35)
+        self.play(ApplyMethod(self.array1[self.seq[6]].set_color, RED), run_time=0.35)
         self.wait(12)
 
         #Complexity analysis
-        rect = SurroundingRectangle(codes[3])
+        rect = SurroundingRectangle(self.my_code.codes[3])
+        self.my_code.add(rect)
         self.play(Write(rect))
         self.wait(10)
-        self.play(FadeOut(rect))
+        #self.play(FadeOut(rect))
 
         self.change_indicator('i', 0, run_time=0.75)
         self.change_indicator('j', 0, run_time=0.75)
@@ -306,11 +332,11 @@ class Algorithm(Scene):
         self.change_indicator('j', 5, run_time=0.75)
         self.change_indicator('j', 6, run_time=0.75)
 
-        self.play(self.b.scale, 0.38, self.b.to_edge, UP)
+        self.play(self.my_code.scale, 0.38, self.my_code.to_edge, UP)
 
         self.wait(1)
         s1 = TextMobject("$n$")
-        s1.next_to(self.b, DOWN)
+        s1.next_to(self.my_code.b, DOWN)
         self.play(Write(s1))
         self.wait(2)
 

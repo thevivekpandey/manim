@@ -111,9 +111,11 @@ class Children(Scene, Sortable):
         self.tot = VGroup(self.b, self.text).arrange(DOWN)
         self.tot.next_to(self.boxes[1], DOWN + 0.5 * RIGHT)
         self.b1 = Brace(self.tot, RIGHT)
+        self.cross = TextMobject("Can be avoided")
+        self.cross.next_to(self.b1)
      
         self.play(FadeIn(self.tot))
-        self.play(FadeIn(self.b1))
+        self.play(FadeIn(self.b1), FadeIn(self.cross))
   
     def construct(self):
         #Start: 00:28
@@ -155,7 +157,7 @@ class Children(Scene, Sortable):
 
         # Step 2: array play
         num_elems = len(self.nums)
-        squares = [Square(side_length=1.15) for i in range(num_elems)]
+        squares = [Square(side_length=1.15, color=YELLOW) for i in range(num_elems)]
         self.boxes = VGroup(*squares).arrange(RIGHT, buff=0)
         self.boxes.next_to(self.platform, DOWN, buff=LARGE_BUFF)
         num_mobjects = [TextMobject(str(num)) for num in self.nums]

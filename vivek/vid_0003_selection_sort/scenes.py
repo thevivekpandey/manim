@@ -10,14 +10,63 @@ class Opening(Scene):
         topic.set_color(BLUE)
         VGroup(text, subtext, topic).arrange(DOWN)
         self.play(FadeIn(text), FadeIn(subtext))
-        self.play(FadeOut(text), FadeOut(subtext))
         self.wait(15)
+        self.play(FadeOut(text), FadeOut(subtext))
 
 class Topic(Scene):
+    def swap(self, later, former, run_time=1):
+        multiple = 0.8
+        delta = 0
+        later_stick = self.array1[self.seq[later]]
+        former_stick = self.array1[self.seq[former]]
+
+        self.play(ApplyMethod(self.array1[self.seq[later]].set_color, RED))
+
+        later_stick.generate_target()
+        later_stick.target.next_to(later_stick, 2 * UP)
+        former_stick.generate_target()
+        former_stick.target.next_to(former_stick, 2 * DOWN)
+        self.play(MoveToTarget(later_stick), MoveToTarget(former_stick), run_time=run_time)
+
+        shift = (later - former) * multiple + delta
+
+        later_stick.generate_target()
+        later_stick.target.shift(shift * LEFT)
+        former_stick.generate_target()
+        former_stick.target.shift(shift * RIGHT)
+        self.play(MoveToTarget(later_stick), MoveToTarget(former_stick), run_time=run_time)
+
+        later_stick.generate_target()
+        later_stick.target.next_to(later_stick, 2 * DOWN)
+        former_stick.generate_target()
+        former_stick.target.next_to(former_stick, 2 * UP)
+        self.play(MoveToTarget(later_stick), MoveToTarget(former_stick), run_time=run_time)
+        
+        self.seq[later], self.seq[former] = self.seq[former], self.seq[later]
+   
     def construct(self):
         topic = TextMobject("SELECTION SORT")
+        topic.scale(2)
         topic.set_color(BLUE)
         self.play(Write(topic))
+
+        self.num_elems1 = 7
+        self.nums1 = [23, 25, 19, 28, 14, 17, 20]
+        self.seq = [0, 1, 2, 3, 4, 5, 6]
+        side_length = 0.8
+        self.squares1 = [Square(side_length=side_length) for i in range(self.num_elems1)]
+        self.boxes1 = VGroup(*self.squares1).arrange(RIGHT, buff=0).to_edge(TOP, buff=SMALL_BUFF)
+
+        g = VGroup(self.boxes1).arrange(RIGHT).next_to(topic, DOWN, buff=10 * SMALL_BUFF)
+
+        num_mobjects1 = [TextMobject("$a_" + str(i) + "$") for i in range(self.num_elems1)]
+        self.array1 = VGroup(*num_mobjects1).arrange(RIGHT, buff=3.8*SMALL_BUFF)
+        self.array1.next_to(self.boxes1[0], RIGHT, buff=-6*SMALL_BUFF)
+        self.play(FadeIn(self.array1), FadeIn(g))
+        self.swap(4, 0)
+        self.swap(6, 1)
+        self.swap(3, 2)
+        self.swap(5, 3)
         self.wait(15)
 
 class Tree(VGroup):
@@ -152,6 +201,8 @@ class RealWorld(Scene):
         c = VGroup(*codes).arrange(DOWN).to_edge(RIGHT + DOWN)
         for i in range(0, len(codes)):
             x_diff = 1.4 + 0.65 * lines[i].count('SPACE')
+            if 'vdots' in lines[i]:
+                x_diff = 4.5
             codes[i].align_to((x_diff, 0, 0), LEFT)
         self.add(c)
         
@@ -162,10 +213,10 @@ class RealWorld(Scene):
 
     def get_real_world(self):
         r1 = SVGMobject(file_name = 'eagle-svgrepo-com.svg').scale(0.5)
-        r2 = SVGMobject(file_name = 'sparrow-svgrepo-com.svg').scale(0.5)
-        r3 = SVGMobject(file_name = 'tree-swallow-svgrepo-com.svg').scale(0.5)
-        r4 = SVGMobject(file_name = 'hummingbird-svgrepo-com.svg').scale(0.5)
-        r5 = SVGMobject(file_name = 'flamingo-svgrepo-com.svg').scale(0.5)
+        r2 = SVGMobject(file_name = 'mountain-climb-svgrepo-com.svg').scale(0.5)
+        r3 = SVGMobject(file_name = 'hummingbird-svgrepo-com.svg').scale(0.5)
+        r4 = SVGMobject(file_name = 'lion-face-svgrepo-com.svg').scale(0.5)
+        r5 = SVGMobject(file_name = 'tree-swallow-svgrepo-com.svg').scale(0.5)
 
         x1 = VGroup(r1, r2).arrange(DOWN, buff = LARGE_BUFF)
         x2 = VGroup(r3, r4, r5).arrange(DOWN, buff = LARGE_BUFF)
