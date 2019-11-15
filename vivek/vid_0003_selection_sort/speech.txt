@@ -53,10 +53,17 @@ called jmin we store the index of smallest value we have encountered thus
 far. As we scan the array, if we encounter a smaller element, we update
 jmin.
 
-When we j reaches 6, we have scanned all the unsorted elements. We know that
-the element at jmin is the smallest element. In this case, element at 4th
-location, i.e. 14, is the smallest element. We swap at with the element at ith
-i.e. 0th location. These three lines of code swap the elements at location i
+======
+So, let's see with example.
+We initialize jmin with 0, since to begin with, 23 is the only element we
+have seen and so that is the smallest element we have seen.
+
+We incrmenet j to 1. Is 25 smaller than 23? No. So we do nothing and increment
+j to 2. Is 19 smaller than 23? Yes, so we update jmin to 2, since 19 resides
+and index 2. We then increment j to 3. Is 28 smaller than 19. No. Increment j to 4. 14 is smaller than 19. So, jmin is updated to 4. For j = 5 and j = 6, we don't find any smaller elements. So, we know that element at index 4 is the smallest. We swap it with the element at the 0th. 
+======
+
+These three lines of code swap the elements at location i
 and jmin. As an aside, do you think we can do a swap without the temporary
 variable? Mention in the comment what you think!
 

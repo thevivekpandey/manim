@@ -26,6 +26,7 @@ class Limb(VGroup):
         limb.shift(DOWN * (self.length / 2.0))
         limb.rotate(self.angle, about_point = self.back.get_start())
         limb.shift(DOWN * self.shift)
+        self.limb = limb
         return limb
 
 class StickMan(VGroup):
@@ -55,40 +56,47 @@ class StickMan(VGroup):
         self.create_stick_man()
         self.update()
 
+    def set_color(self, color):
+        a1 = ApplyMethod(self.back.set_color, color)
+        a2 = ApplyMethod(self.head.set_color, color)
+        a3 = ApplyMethod(self.left_arm.set_color, color)
+        a4 = ApplyMethod(self.right_arm.set_color, color)
+        a5 = ApplyMethod(self.left_leg.set_color, color)
+        a6 = ApplyMethod(self.right_leg.set_color, color)
+        return [a1, a2, a3, a4, a5, a6]
+
     def create_stick_man(self):
         back = Line(UP, DOWN)
         back.set_height(self.length)
         back.set_style(**self.back_style)
         self.add(back)
+        self.back = back
 
-        head = Circle()
-        head.set_width(self.head_diameter)
-        head.set_style(**self.head_style)
+        head = Dot(radius=0.15)
         head.move_to(back.get_start())
         self.add(head)
+        self.head = head
 
         left_arm = Limb(back, 'left', 'arm').create_limb()
         self.add(left_arm)
+        self.left_arm = left_arm
 
         right_arm = Limb(back, 'right', 'arm').create_limb()
         self.add(right_arm)
+        self.right_arm = right_arm
 
         left_leg= Limb(back, 'left', 'leg').create_limb()
         self.add(left_leg)
+        self.left_leg = left_leg
 
         right_leg= Limb(back, 'right', 'leg').create_limb()
         self.add(right_leg)
+        self.right_leg = right_leg
 
 class Children(Scene, Sortable):
     def move_stick_man(self, target, pos, partial=False, set_color=True):
-        #if set_color:
-        #    self.stick_men[self.seq[target]].set_color(RED)
+        self.play(*self.stick_men[self.seq[target]].set_color(RED))
         self.move(target, pos, partial)
-
-    def move_stick_man1(self, target, pos, partial=False, set_color=True):
-        #if set_color:
-        #    self.stick_men[self.seq[target]].set_color(RED)
-        self.move1(target, pos, partial)
 
     def make_little_arrow_and_remark(self):
         self.arrows = []
@@ -108,6 +116,7 @@ class Children(Scene, Sortable):
         self.play(FadeIn(self.b1))
   
     def construct(self):
+        #Start: 00:28
         #Step 1: Children play
         self.nums = nums = [23, 25, 33, 28, 14, 17, 20]
         self.seq = [n for n in range(len(nums))]
@@ -123,15 +132,19 @@ class Children(Scene, Sortable):
         self.platform.to_edge(DOWN, buff = 2.95 * LARGE_BUFF)
         self.play(Write(self.platform))
         self.play(Write(self.stick_men))
+        self.wait(12) #00:42
 
-        #self.move_stick_man(4, 0)
-        #self.move_stick_man(5, 1)
-        #self.move_stick_man(3, 2)
-        #self.move_stick_man(3, 3)
-        #self.move_stick_man(6, 4)
-        #self.move_stick_man(6, 5)
-        #self.move_stick_man(6, 6)
+        self.move_stick_man(4, 0)
+        self.wait(1) #00:52
+        self.move_stick_man(5, 1)
+        self.wait(2) #01:02
+        self.move_stick_man(6, 2)
+        self.play(*self.stick_men[self.seq[3]].set_color(RED))
+        self.play(*self.stick_men[self.seq[4]].set_color(RED))
+        self.move_stick_man(6, 5)
+        self.play(*self.stick_men[self.seq[6]].set_color(RED))
 
+        self.wait(4) #1:27
         self.platform.generate_target()
         self.platform.target.shift(2 * UP)
         
@@ -155,6 +168,7 @@ class Children(Scene, Sortable):
         transforms = [Transform(self.stick_men[i], self.array[i]) for i in range(num_elems)]
         transforms.append(FadeOut(self.platform))
         self.play(*transforms)
+        self.wait(7)
 
         self.nums = nums = [23, 25, 33, 28, 14, 17, 20]
         self.multiple = 1.17
@@ -166,17 +180,26 @@ class Children(Scene, Sortable):
         self.move_stick_man(5, 1, partial=True, set_color=False)
 
         self.make_little_arrow_and_remark()
+        self.wait(10)
         self.move_left(1, 4)
+        self.wait(2)
         self.target_move_down_and_right(1, 5)
         self.target_move_up_down(1, 5)
         self.seq[1], self.seq[5] = self.seq[5], self.seq[1]
 
-        print(self.seq)
+        self.wait(6)
+        self.play(*self.stick_men[self.seq[6]].set_color(RED))
         self.swap(6, 2)
+        self.play(*self.stick_men[self.seq[5]].set_color(RED))
         self.swap(5, 3)
-        #self.swap(6, 4)
-        #self.swap(6, 5)
+        self.play(*self.stick_men[self.seq[6]].set_color(RED))
+        self.swap(6, 4)
+        self.play(*self.stick_men[self.seq[6]].set_color(RED))
+        self.swap(6, 5)
+        self.play(*self.stick_men[self.seq[6]].set_color(RED))
 
+        self.wait(60)
+        return
         #self.swap(5, 6)
         #self.swap(4, 6)
         #self.swap(3, 5)

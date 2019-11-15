@@ -6,12 +6,19 @@ class Opening(Scene):
         text = TextMobject("Computer Science by Pandey")
 
         subtext = TextMobject("One video: One snack sized topic")
-        VGroup(text, subtext).arrange(DOWN)
-        self.play(Write(text))
-        self.wait(1)
-        self.play(Write(subtext))
-        self.wait(15)
+        topic = TextMobject("SELECTION SORT")
+        topic.set_color(BLUE)
+        VGroup(text, subtext, topic).arrange(DOWN)
+        self.play(FadeIn(text), FadeIn(subtext))
         self.play(FadeOut(text), FadeOut(subtext))
+        self.wait(15)
+
+class Topic(Scene):
+    def construct(self):
+        topic = TextMobject("SELECTION SORT")
+        topic.set_color(BLUE)
+        self.play(Write(topic))
+        self.wait(15)
 
 class Tree(VGroup):
     class MyEllipse(Ellipse):
@@ -118,12 +125,16 @@ class RealWorld(Scene):
         arrow = self.get_arrow(rect1, rect2)
 
         self.play(Write(algo_world))
+        self.wait(2)
         self.play(Write(rect1))
+        self.wait(1)
 
         self.play(Write(arrow))
 
         self.play(Write(real_world))
+        self.wait(2)
         self.play(Write(rect2))
+        self.wait(12)
 
     def get_algo_world(self):
         t = Tree()
@@ -132,10 +143,16 @@ class RealWorld(Scene):
         squares = [Square(side_length=0.5) for i in range(7)]
         boxes = VGroup(*squares).arrange(RIGHT, buff=0)
 
-        line1 = "for (i = 0; i < n; i++) \{"
-        line2 = "SPACEfor (j = 0; j < n; j++) \{"
-        line3 = "\\vdots"
-        c = Code(line1, line2, line3).scale(0.7)
+        lines = [
+            "for (i = 0; i < n; i++) \{",
+            "SPACEfor (j = 0; j < n; j++) \{",
+            "\\vdots"
+          ]
+        codes = [Code(line) for line in lines]
+        c = VGroup(*codes).arrange(DOWN).to_edge(RIGHT + DOWN)
+        for i in range(0, len(codes)):
+            x_diff = 1.4 + 0.65 * lines[i].count('SPACE')
+            codes[i].align_to((x_diff, 0, 0), LEFT)
         self.add(c)
         
         x = VGroup(t, boxes, c).arrange(DOWN, buff = LARGE_BUFF)

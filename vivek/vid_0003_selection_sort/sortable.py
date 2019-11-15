@@ -12,7 +12,7 @@ class Sortable():
         target_stick = self.items[self.seq[target]]
 
         target_stick.generate_target()
-        target_stick.target.next_to(target_stick, 2 * UP)
+        target_stick.target.next_to(target_stick, 3 * UP)
         self.play(MoveToTarget(target_stick))
 
         shift = (target - pos) * self.multiple + self.delta
@@ -24,7 +24,7 @@ class Sortable():
         target_stick = self.items[self.seq[target]]
 
         target_stick.generate_target()
-        target_stick.target.next_to(target_stick, 2 * DOWN)
+        target_stick.target.next_to(target_stick, 3 * DOWN)
         self.play(MoveToTarget(target_stick))
 
         shift = (pos - target) * self.multiple + self.delta
@@ -35,17 +35,17 @@ class Sortable():
     def target_move_down(self, target):
         target_stick = self.items[self.seq[target]]
         target_stick.generate_target()
-        target_stick.target.next_to(target_stick, 2 * DOWN)
+        target_stick.target.next_to(target_stick, 3 * DOWN)
         self.play(MoveToTarget(target_stick))
 
     def target_move_up_down(self, up, down):
         up_stick = self.items[self.seq[up]]
         up_stick.generate_target()
-        up_stick.target.next_to(up_stick, 2 * UP)
+        up_stick.target.next_to(up_stick, 3 * UP)
 
         down_stick = self.items[self.seq[down]]
         down_stick.generate_target()
-        down_stick.target.next_to(down_stick, 2 * DOWN)
+        down_stick.target.next_to(down_stick, 3 * DOWN)
         self.play(MoveToTarget(up_stick), MoveToTarget(down_stick))
 
     def intermediate_move(self, target, pos):
@@ -91,9 +91,9 @@ class Sortable():
         former_stick = self.items[self.seq[former]]
 
         later_stick.generate_target()
-        later_stick.target.next_to(later_stick, 2 * UP)
+        later_stick.target.next_to(later_stick, 3 * UP)
         former_stick.generate_target()
-        former_stick.target.next_to(former_stick, 2 * DOWN)
+        former_stick.target.next_to(former_stick, 3 * DOWN)
         self.play(MoveToTarget(later_stick), MoveToTarget(former_stick))
 
         shift = (later - former) * self.multiple + self.delta
@@ -105,9 +105,9 @@ class Sortable():
         self.play(MoveToTarget(later_stick), MoveToTarget(former_stick))
 
         later_stick.generate_target()
-        later_stick.target.next_to(later_stick, 2 * DOWN)
+        later_stick.target.next_to(later_stick, 3 * DOWN)
         former_stick.generate_target()
-        former_stick.target.next_to(former_stick, 2 * UP)
+        former_stick.target.next_to(former_stick, 3 * UP)
         self.play(MoveToTarget(later_stick), MoveToTarget(former_stick))
         
         self.seq[later], self.seq[former] = self.seq[former], self.seq[later]
