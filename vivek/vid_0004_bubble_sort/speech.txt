@@ -1,0 +1,129 @@
+Hello, Pandey here.
+
+In the last video we studied selection sort, and we saw how it was inspired
+by arranging a group of students in order of their heights. We saw that
+its complexity was O(n ^ 2).
+
+In this video we consider the much humble and much maligned bubble sort,
+which is another O(n^2) sorting algorithm which is also inspired by the 
+natural world.
+
+Suppose you take a bunch of gases of varying densities which do not react
+with each other and put them in a jar and let them be. In this diagram,
+ligher shades of gray denote lighter gases and darker shades denote
+heavier gases. What do you think will happen? The ligher gases tend to
+bubble up, while heavier gases tend to sink down. For the sake of understanding
+you can assume that two nearby molecules change their places if ligher one
+is below the darker one.
+
+And this inspires our next sorting algorithm: the bubble sort, sometimes
+also called sink sort.
+
+Now, coming to the software world, we need some systematic way to decide what 
+exactly will these swaps be.
+
+Simplest is to just scan the array, comparing each element with the successive
+element and swap the elements if need be.
+
+Let's see how that works with an example.
+First we compare 25 with 23. They are not in the right order. So, we swap them.
+
+Next we move ahead and compare 25 with 33. They are in the right order, so
+we move ahead and compare 33 and 28. Since 33 is bigger, we need to swap the
+two numbers.
+
+We keep doing this till the end of the array.
+
+Note that after one pass, the largest element, 33 is at the right most slot, which
+is its correct slot.
+
+What happens we if we repeat this process once more?
+Again, keep on comparing and swapping and we have the second largest element
+on its right place.
+
+In the third, pass we get one more element in its right place.
+
+After some time, we realise that the array is sorted.
+
+So, let's get down to writing the code for it.
+
+For each pass, we have a loop from j = 0 to j = n - 2, and each iteration of the loop,
+we compare the j th element with the j + 1 th element. If jth element is larger
+than j + 1 th element, we swap the two elements.
+
+How many times do we need to repeat this? Well in each pass, one element bubbles to
+its correct position. So, in n - 1 passes, n - 1 elements will be at right position,
+and then the n^th element will be at the first position, which of course is its
+correct position. So, we need to do n - 1 passes.
+
+So, that is the basic bubble sort. We can do a quick improvement to it. You may have
+noticed, as we do successive passes, the largest elements keep settling on the right. 
+
+So, in the first pass, for i = 0, we need do n - 1 comparisons, but for the second
+pass, when i = 1, we know that the last element is at the correct place, so we can
+skip the last comparison and thus we need to do only n - 2 comparisons. In general,
+for a certain value of i, we need to do only n - 1 - i comparisons.
+
+This cuts down the number of comparisons by roughly half.
+
+Alright, so, this was bubble sort. Now, let's find out its time complexity. That is
+a quite a straightforward task. The inner if statement is the one which executes maximum
+number of times because it is inside the double loop. So, number of times the if statement
+executes determines the time complexity of the algorithm.
+
+Let's see how many times the "if" statement executes. For i = 0, j varies from 0 to n - 2,
+so, there are n - 1 comparisons. For i = 1, j varies from 0 to n - 3, and so there are n - 2
+comparisons. This goes on and finally, for i = n - 2, there is a single comparison. So, 
+overall there are n(n-1) / 2 comparisons, which makes it an O(n^2) algorithm.
+
+I want to make a few observations about bubble sort. First is that it the slowest
+of the popular sorting algorithms. It has got such a bad reputation that some professors
+have suggested that it should not even be tought. Donald Knuth concluded that
+"the bubble sort seems to have nothing to recommend it except a catchy name and the fact
+it leads to some interesting theoretical problems"
+
+Of course, being an O(n^2) algorithm,
+it is slower than O(n log n) algorithms like quick sort, merge sort or heap sort. But
+why is it slower than other O(n^2) algorithms like selection sort or insertion sort. The
+reason is that bubble sort is quite heavy on swaps. 
+
+Let's see how. The number of swaps in the bubble sort is O(n^2), since in the worst
+case, you need to do the swap for each iteration of if condition. The worst case occurs 
+when the input array is sorted in descending order, 
+
+Compare that with the code of selection sort: here the number of times "if" condition
+executes is still O(n^2), but the number of swaps is only O(n) since there is only
+one swap for every execution of the outer loop. Now, swap is quite heavy: it consists
+of 3 instructions, as opposed to just 1 instruction for if statement. Thus, an algorithm
+which is heavy on swaps will be slower. For a similar reason, bubble sort is slower
+than insertion sort too.
+
+That raises one question though, if bubble sort is inspired by natural phenomena as
+we saw in the beginning of this video, then why is it so slow? Nature usually does things 
+in a very optimal way. The number of petals in a flower follow fibonacci sequence and the
+snail shells follow the logarithmic spiral and nature arranges everything in most optimal
+manner. After all, such technological advances as 
+artificial neural network are inspired by neural networks in our brains. Then why is
+bubble sort so dumb?
+
+The catch here is parallelism. In the gas
+in the jar example that we considered at the beginning of the video, muliple swaps happen 
+simultaneously in nature. So the real world implementation of bubble sort is actually a parallel
+implementation. However, in our sorting algorithms, we are concerned with a uniprocessor
+scenario. 
+
+We can do a slight improvement to bubble sort. It is possible that the array gets
+sorted in fewer than n - 1 passes. In that case, we can break out of outer loop
+sooner. How can we easily detect that the array gets sorted. If in a given pass
+there is no swap, then we are certain that is already sorted, because each element
+is smaller than the next element. Note that while this improvement makes the algorithm
+a bit faster for some cases, in general it remains uncompetitive to other sorting algos.
+
+Finally, a personal anecdote to end this video. During my undergraduate studies at 
+IIT Kanpur, professor Manindra Agarwal took our algorithm classes, and in a course 
+project, he saw a file
+called BubbleSort.java, which meant that someone had used bubble sort in a larger
+project. He was a bit annoyed that someone was dumb enough to employe bubble sort
+in a practical scenario! So much for the reputation of the humble bubble sort.
+
+Good bye and see you later!

@@ -1,0 +1,10 @@
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/Opening.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/LastVideo.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/IntroduceBubbleSort.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/bubbles/1440p60/Bubbles.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/Knuth.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/WhySlow.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/Nature.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/bubbles1/1440p60/Bubbles.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/Improvement.mp4
+file /Users/vpandey/git/manim/vivek/vid_0004_bubble_sort/videos/scenes/1440p60/Manindra.mp4

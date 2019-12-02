@@ -1,0 +1,19 @@
+class hierarchy
+
+Square
+
+Rectangle
+
+Polygon
+
+VMobject
+
+Mobject has submobjects which are required for functions 
+        like next_to()
+
+Container
+====================
+
+VGgroup
+
+VMobject
