@@ -1,5 +1,5 @@
 
-from for_3b1b_videos.pi_creature import *
+from manimlib.for_3b1b_videos.pi_creature import *
 from active_projects.eop.reusables.eop_constants import *
 
 

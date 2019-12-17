@@ -3,7 +3,7 @@
 
 from manimlib.imports import *
 
-from once_useful_constructs.light import *
+from manimlib.once_useful_constructs.light import *
 
 import warnings
 warnings.warn("""
@@ -87,12 +87,13 @@ H = np.append(H2, 0.)
 
 
 
-class AngleUpdater(ContinualAnimation):
+#class AngleUpdater(ContinualAnimation):
+class AngleUpdater():
     def __init__(self, angle_arc, spotlight, **kwargs):
         self.angle_arc = angle_arc
 
         self.spotlight = spotlight
-        ContinualAnimation.__init__(self, self.angle_arc, **kwargs)
+        #ContinualAnimation.__init__(self, self.angle_arc, **kwargs)
 
     def update_mobject(self, dt):
         new_arc = self.angle_arc.copy().set_bound_angles(
@@ -176,7 +177,8 @@ class UpdateLightIndicator(AnimationGroup):
         self.mobject = indicator
 
 
-class ContinualLightIndicatorUpdate(ContinualAnimation):
+#class ContinualLightIndicatorUpdate(ContinualAnimation):
+class ContinualLightIndicatorUpdate():
 
     def update_mobject(self,dt):
         self.mobject.update_mobjects()
@@ -372,7 +374,7 @@ class IntroScene(PiCreatureScene):
         series_terms = np.cumsum(terms)
         lines = VGroup()
         self.rects = VGroup()
-        slab_colors = [YELLOW, BLUE] * (max_n2 / 2)
+        slab_colors = [YELLOW, BLUE] * (max_n2 // 2)
 
         for t1, t2, color in zip(series_terms, series_terms[1:], slab_colors):
             line = Line(*list(map(self.number_line.number_to_point, [t1, t2])))

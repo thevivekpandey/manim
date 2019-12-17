@@ -1,5 +1,5 @@
-from mobject.geometry import *
-from mobject.svg.tex_mobject import *
+from manimlib.mobject.geometry import *
+from manimlib.mobject.svg.tex_mobject import *
 from active_projects.eop.reusables.upright_coins import *
 
 

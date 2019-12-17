@@ -944,19 +944,19 @@ class ShowInfiniteSum(FourierSeriesIllustraiton):
                 ApplyMethod(n_tracker.increment_value, 1),
             )
 
-        for i in range(1, 4):
-            self.play(
-                Transform(bv_rect, bv_rects[i]),
-                get_ps_anim(),
-            )
-            self.wait()
+        #for i in range(1, 4):
+        #    self.play(
+        #        Transform(bv_rect, bv_rects[i]),
+        #        get_ps_anim(),
+        #    )
+        #    self.wait()
 
-        self.play(
-            FadeOut(bv_rect),
-            get_ps_anim()
-        )
-        for x in range(3):
-            self.play(get_ps_anim())
+        #self.play(
+        #    FadeOut(bv_rect),
+        #    get_ps_anim()
+        #)
+        #for x in range(3):
+        #    self.play(get_ps_anim())
         self.play(
             input_tracker.set_value, 0.7,
         )

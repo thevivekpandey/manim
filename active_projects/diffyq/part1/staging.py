@@ -142,8 +142,8 @@ class TourOfDifferentialEquations(MovingCameraScene):
         dots = TexMobject("\\dots")
         dots.next_to(thumbnails[-1], RIGHT)
 
-        self.add_phase_space_preview(thumbnails[0])
-        self.add_heat_preview(thumbnails[1])
+        #self.add_phase_space_preview(thumbnails[0])
+        #self.add_heat_preview(thumbnails[1])
         self.add_fourier_series(thumbnails[2])
         self.add_matrix_exponent(thumbnails[3])
         self.add_laplace_symbol(thumbnails[4])
@@ -307,7 +307,7 @@ class ShowGravityAcceleration(Scene):
         self.add_gravity_field()
         self.add_title()
         self.pulse_gravity_down()
-        self.show_g_value()
+        #self.show_g_value()
         self.show_trajectory()
         self.combine_v_vects()
         self.show_g_symbol()
@@ -352,6 +352,7 @@ class ShowGravityAcceleration(Scene):
             "-9.8", "{\\text{m/s}", "\\over", "\\text{s}}",
             **Lg_formula_config
         )
+        g_eq = self.g_eq = TexMobject("vivek")
         g_eq.add_background_rectangle_to_submobjects()
         g_eq.scale(2)
         g_eq.center()
@@ -393,9 +394,9 @@ class ShowGravityAcceleration(Scene):
         dashed_graph.set_stroke(WHITE, 1)
 
         ball.move_to(graph.get_start())
-        randy.add_updater(
-            lambda m, dt: m.rotate(dt).move_to(ball)
-        )
+        #randy.add_updater(
+        #    lambda m, dt: m.rotate(dt).move_to(ball)
+        #)
         times = np.arange(0, total_time + 1)
 
         velocity_graph = ParametricFunction(
@@ -475,7 +476,7 @@ class ShowGravityAcceleration(Scene):
                 anims.append(flash)
             self.play(*anims, run_time=1)
             dashed_graph.restore()
-        randy.clear_updaters()
+        #randy.clear_updaters()
         self.play(FadeOut(time_group))
         self.wait()
 

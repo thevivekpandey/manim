@@ -1,4 +1,4 @@
-from mobject.geometry import *
+from manimlib.mobject.geometry import *
 from active_projects.eop.reusables.eop_helpers import *
 from active_projects.eop.reusables.eop_constants import *
 

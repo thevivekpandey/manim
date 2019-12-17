@@ -1,4 +1,4 @@
-from utils.color import *
+from manimlib.utils.color import *
 from active_projects.eop.reusables.eop_constants import *
 
 def binary(i):

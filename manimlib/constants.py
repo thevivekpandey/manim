@@ -96,6 +96,7 @@ HELP_MESSAGE = """
    -o <file_name> write to a different file_name
    -l use low quality
    -m use medium quality
+   -v use very low quality
    -a run and save every scene in the script, or all args for the given scene
    -q don't print progress
    -f when writing to a movie file, export the frames in png sequence
@@ -140,6 +141,12 @@ LOW_QUALITY_CAMERA_CONFIG = {
     "pixel_height": 480,
     "pixel_width": 854,
     "frame_rate": 15,
+}
+
+VERY_LOW_QUALITY_CAMERA_CONFIG = {
+    "pixel_height": 180,
+    "pixel_width": 320,
+    "frame_rate": 8,
 }
 
 DEFAULT_PIXEL_HEIGHT = PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_height"]

@@ -38,6 +38,11 @@ def parse_cli():
             help="Save the last frame",
         ),
         parser.add_argument(
+            "-v", "--very_low_quality",
+            action="store_true",
+            help="Render at a low quality (for faster rendering)",
+        ),
+        parser.add_argument(
             "-l", "--low_quality",
             action="store_true",
             help="Render at a low quality (for faster rendering)",
@@ -238,7 +243,9 @@ def get_configuration(args):
 
 def get_camera_configuration(args):
     camera_config = {}
-    if args.low_quality:
+    if args.very_low_quality:
+        camera_config.update(manimlib.constants.VERY_LOW_QUALITY_CAMERA_CONFIG)
+    elif args.low_quality:
         camera_config.update(manimlib.constants.LOW_QUALITY_CAMERA_CONFIG)
     elif args.medium_quality:
         camera_config.update(manimlib.constants.MEDIUM_QUALITY_CAMERA_CONFIG)

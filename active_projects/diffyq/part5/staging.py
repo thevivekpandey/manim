@@ -166,7 +166,7 @@ class IntroducePhysicalModel(IntroductionOfExp):
         self.setup_number_line()
         self.setup_movers()
         self.show_number_line()
-        self.show_formulas()
+        #self.show_formulas()
         self.let_time_pass()
 
     def setup_number_line(self):
@@ -441,71 +441,71 @@ class IntroducePhysicalModel(IntroductionOfExp):
         nl = self.number_line
         zero_point = nl.n2p(0)
 
-        nl_copy = nl.copy()
-        nl_copy.submobjects = []
-        nl_copy.stretch(100, 0, about_point=zero_point)
-        nl.add(nl_copy)
+        #nl_copy = nl.copy()
+        #nl_copy.submobjects = []
+        #nl_copy.stretch(100, 0, about_point=zero_point)
+        #nl.add(nl_copy)
 
-        # For first zoom
-        xs1 = range(25, 100, 25)
-        nl.add(*[
-            nl.get_tick(x, size=1.5)
-            for x in xs1
-        ])
-        nl.add_numbers(
-            *xs1,
-            number_config={"height": 5},
-            buff=2,
-        )
+        ## For first zoom
+        #xs1 = range(25, 100, 25)
+        #nl.add(*[
+        #    nl.get_tick(x, size=1.5)
+        #    for x in xs1
+        #])
+        #nl.add_numbers(
+        #    *xs1,
+        #    number_config={"height": 5},
+        #    buff=2,
+        #)
 
-        # For second zoom
-        xs2 = range(200, 1000, 200)
-        nl.add(*[
-            nl.get_tick(x, size=15)
-            for x in xs2
-        ])
-        nl.add_numbers(
-            *xs2,
-            number_config={"height": 50},
-            buff=20,
-        )
+        ## For second zoom
+        #xs2 = range(200, 1000, 200)
+        #nl.add(*[
+        #    nl.get_tick(x, size=15)
+        #    for x in xs2
+        #])
+        #nl.add_numbers(
+        #    *xs2,
+        #    number_config={"height": 50},
+        #    buff=20,
+        #)
 
-        # For third zoom
-        xs3 = range(2000, 10000, 2000)
-        nl.add(*[
-            nl.get_tick(x, size=150)
-            for x in xs3
-        ])
-        nl.add_numbers(
-            *xs3,
-            number_config={
-                "height": 300,
-            },
-            buff=200,
-        )
-        for n in nl.numbers:
-            n[1].scale(0.5)
+        ## For third zoom
+        #xs3 = range(2000, 10000, 2000)
+        #nl.add(*[
+        #    nl.get_tick(x, size=150)
+        #    for x in xs3
+        #])
+        #nl.add_numbers(
+        #    *xs3,
+        #    number_config={
+        #        "height": 300,
+        #    },
+        #    buff=200,
+        #)
+        #for n in nl.numbers:
+        #    n[1].scale(0.5)
 
-        self.add(self.tip)
+        #self.add(self.tip)
 
-        self.add(self.output_label)
-        self.play(VFadeIn(self.output_label))
-        self.wait(5)
+        #self.add(self.output_label)
+        #self.play(VFadeIn(self.output_label))
+        #self.wait(5)
         self.play(
             nl.scale, 0.1, {"about_point": zero_point},
             run_time=1,
         )
-        self.wait(6)
-        self.play(
-            nl.scale, 0.1, {"about_point": zero_point},
-            run_time=1,
-        )
-        self.wait(8)
-        self.play(
-            nl.scale, 0.1, {"about_point": zero_point},
-            run_time=1,
-        )
-        self.wait(12)
+        #self.wait(6)
+        #self.play(
+        #    nl.scale, 0.1, {"about_point": zero_point},
+        #    run_time=1,
+        #)
+        #self.wait(8)
+        #self.play(
+        #    nl.scale, 0.1, {"about_point": zero_point},
+        #    run_time=1,
+        #)
+        #self.wait(12)
 
 
 class ConstantEquals2(IntroducePhysicalModel):
