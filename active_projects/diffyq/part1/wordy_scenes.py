@@ -58,17 +58,17 @@ class StrogatzQuote(Scene):
             # FadeInFromDown(quote[:-1]),
             # lag_ratio=0.01,
         )
-        self.wait()
-        self.play(
-            Write(quote.law_part.copy().set_color(YELLOW)),
-            run_time=1,
-        )
-        self.wait()
-        self.play(
-            Write(quote.language_part.copy().set_color(BLUE)),
-            run_time=1.5,
-        )
-        self.wait(2)
+        #self.wait()
+        #self.play(
+        #    Write(quote.law_part.copy().set_color(YELLOW)),
+        #    run_time=1,
+        #)
+        #self.wait()
+        #self.play(
+        #    Write(quote.language_part.copy().set_color(BLUE)),
+        #    run_time=1.5,
+        #)
+        #self.wait(2)
 
     def get_quote(self):
         law_words = "laws of physics"

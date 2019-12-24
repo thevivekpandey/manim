@@ -1,6 +1,11 @@
-file /Users/vpandey/git/manim/media/videos/scenes/480p15/Opening.mp4
-file /Users/vpandey/git/manim/media/videos/scenes/480p15/ThreeQuestions.mp4
-file /Users/vpandey/git/manim/media/videos/scenes/480p15/SortingAlgos.mp4
-file /Users/vpandey/git/manim/media/videos/scenes/480p15/BigDeal.mp4
-file /Users/vpandey/git/manim/media/videos/scenes/480p15/Bag.mp4
-file /Users/vpandey/git/manim/media/videos/scenes/480p15/Marks.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/Opening.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/ThreeQuestions.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/SortingAlgos.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/BigDeal.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/Bag.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/Marks.mp4
+file excel-cut.mov
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/RadixSort.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/StableAlgos.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/AnotherWay.mp4
+file /Users/vpandey/git/manim/media/videos/scenes/1440p60/GoodBye.mp4

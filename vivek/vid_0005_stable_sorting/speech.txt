@@ -7,7 +7,7 @@ In particular we study three things:
    About this third point, I think I have some original insights
    about what exactly leads to a sorting algorithm being stable or unstable.
    So, stay tuned.
-
+-------------------
 So, let's get down to the first question: what is meant by the stability of a sorting
 algorithm?
 
@@ -25,21 +25,23 @@ Now consider what happens when some of the input numbers are equal. Let's change
 original array a bit.
 
 Let's change 
-23 to 18 so we have two 18s, and change 28 to 15 so that we have two 18s and two 15s.
+23 to 18 so we have two 18s, and change 28 to 14 so that we have two 18s and two 14s.
 To distinguish between 18s, let's call them 18_1 and 18_2 and to distinguish between two
-15s, let's call them 15_1 and 15_2.
+14s, let's call them 14_1 and 14_2.
 
 Let's run selection sort, quick sort, insertion sort and bubble sort on this array.
-As you see, selection sort and quick sorts have swapped the order of two 18s, so they
-are not stable sorting algorithms. Insertion sort and bubble sort have kept the orders
-of two 18s and two 15s intact. Infact, they always preserve the order of equal elements
-so they are stable sorting algorithms. 
-
-You may think, well, what's the big the deal: A 15 is a 15 and an 18 is an 18. Why
+As you see, selection sort has swapped the order of two 18s, so it is not 
+not a stable sorting algorithms. Quick sort has done the same so it is also not a stable
+sorting algorithm. Insertion sort has kept the order of two 18s and two 14s intact. Infact
+it does so for any given input. So, it is a stable sorting algorithm. Same holds true
+for bubble sort algorithm.
+-------------------
+You may think, well, what's the big the deal: An 18 is an 18 and a 14 is an 18. Why
 is preserving the order even important?
 
 The reason is that we might not be sorting the list in isolation. These numbers may just
 be a property of some larger entity.
+-------------------
 
 Let's take an example.
 
@@ -58,27 +60,34 @@ first.
 
 This can be achieved if we use a stable sorting algorithm.
 
+-------------------
 Or let's consider another example, say there is an excel sheet containing names and countries
 of the students. The first column contains names of the students, and the second column
-contains their countries.
+contains their countries. As you can see there are a bunch of Indians, a bunch of Chinese,
+a bunch of Americans and some Australians.
 
 Let's say a first decides to sort the list in order of the their names. Next he decides
 to order the list in the order of their countries. Indeed now we have the list sorted
-as per the country names. But notice an interesting things. Since the list was sorted
+as per the country names. But notice an interesting thing. Since the list was already sorted
 by names first and excel uses a stable sorting algorithm, all the australians are
 sorted in alphabetical orders. So are all the canadians, or the chinese. This is much
-better neater for the end user, than if excel were to use an unstable sorting algorithm
+neater for the end user, than if excel were to use an unstable sorting algorithm
 and jumble up the names with a given country.
 
-Alright, so this was one strong reason to use stable sorting algorithms. Here is one more.
+Alright, so this was one strong reason to use stable sorting algorithms. 
+
+-------------------
+Here is one more.
 Some sorting algorithms, specifically radix sort, use a stable sorting algorithm as a
 subroutine within themselves.
 
 Let's have a quick look at radix sort. Say we have these six numbers to sort. We first sort
-these numbers by the last digit, like so. To do this sort, we use some other sorting algorithm
+these numbers by the last digit. To do this sort, we use some other sorting algorithm
 suited for such a task, like perhaps counting sort.
 We then sort the resulting list by the second
-last digit and so on. When we have sorted the numbers by all the digits, the original list
+last digit, the third last digit, the second digit and finally the first digit.
+
+When we have sorted the numbers by all the digits, the original list
 is sorted, as you can see.
 
 The important point is that the sorting algorithm that we use to sort the numbers by specific
@@ -87,21 +96,62 @@ when the numbers were sorted by last four digits, 40404 was before 45635. This i
 0404 is less than 5635. Now when sorting by the first digit, it is important that 40404 remains
 before 45635. This can be ensured only by stable sorting algorithms.
 
+-------------------
 Alright, now that we are hopefully convinced that stable sorting algorithms are a good idea,
 let's see which of the popular sorting algos are stable and which are not. Infact, any 
 sorting algorithm can have a stable version, perhaps at additional space or time
 complexity. However, some algos are naturally stable, i.e. they don't need need any
 special provision for them to be made stable.
 
-Insertion Sort
-Merge Sort
-Bubble Sort and 
-Counting Sort
+If you closely observe the difference between various algorithms, you'll find that
+the key characterstics of unstable algorithms is that they swap non adjacent
+elements of the array.
 
-are stable, while
-Heap Sort
-Selection Sort
-and Quick Sort
-are not.
+Let's see how swaps of non adjacent elements destroy the stability of an algorithm.
+In this array, there are two 18s and a 14. Never mind what are the other elements.
+Now suppose that the algorithm dictates you to swap the first 18 with the 14.
+Now this swap is going to put 18_1 later than 18_2, which will make the algorithm
+unstable. If you could quickly find that there is another 18 in the array, 18_2, then
+you could have swapped that 18 with 14 element and preserved the stability. But to
+another 18 will take O(n) time and that would destroy the stability of the algorithm.
 
-Let's briefly go though them and see why are are stable or unstable.
+If your algorithm restricts itself to swapping adjacent elements, then you can always
+avoid swapping 18_1 and 18_2 and never land in this problem.
+
+Time for a reality check: merge sort, insertion sort, and counting sort have no swaps
+so they are stable. Bubble sort swaps only adjacent elements, so that is stable too.
+Quick sort, heap sort and selection sort swap non adjacment elements so they are unstable.
+I have put the link to the code of all these algos in the description where you can 
+check for the existance of swaps in various algos.
+
+-------------------
+There is another way in which you can look at sorting algorithms. You know, 
+in life, there is no free lunch. If you are good at one thing, you will miss
+out on others. That idea leads us to the impossible trinity for comparison
+sorts. There are three desirable property that we want from comparison sorts:
+we want it to run in O(n log n) time, we want it to consume only O(1) extra
+space and we want it to be stable.
+
+The impossible trinity states that a given algorithm can get at max 2 of
+these three properties.
+
+If like quick sort or heap sort it is O(n log n) with O(1) extra space, then it
+is so much focused on those aspects, that it needs to swap on adjacent elements
+and so it is not a stable sort.
+
+Merge sort is also O(n log n), but it uses O(n) extra space, so it has enough
+slack to be stable too.
+
+Finally, insertion sort and bubble sort are O(n2) algorithms. Since they compromise
+on speed, they can get work done with O(1) extra space and being stable at the same time.
+
+Selection sort, however, is an anommaly. It is an O(n2) algo so since it is not time optimal,
+it should be able to achieve O(1) space and stability. It does achieve O(1) space, but 
+is not stable. The reason is that the standard selection sort employs a short cut where
+it replaces n shifts by 1 swap of non adjacent elements. If we switch it to n shifts, then
+it will be a stable algorithm, while still retaining O(n2) complexity and O(1) space. Have
+a look at more material in the description.
+
+-------------------
+All right, so that was all about stable sorting algos. Hope you enjoyed the video. See you
+later.

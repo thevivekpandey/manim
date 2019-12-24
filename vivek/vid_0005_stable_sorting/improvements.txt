@@ -1,0 +1,25 @@
+1.  [CANCELLED] 3 window things for topics
+3.  [DONE] Sorting algos to be equally spaced.
+4.  [DONE] Rename "Unsorted" as "Input Array"
+5.  [CANCELLED] Swaps should be better
+6.  [DONE] Two 18s should enlarge and shrink
+10. [DONE] Highlight "Mahesh" when you say "Mahesh was the first"
+11. [DONE] Vivek -> Saurav 
+12. [DONE] Highlight Tanmay and Rahul when you speak about them
+14. [DONE] Key charaterstic is in all red
+15. [DONE] In this array, there are two 18s: enlarge and shrink here
+19. [DONE] Just say despite O(n^2). No need to say O(1) space
+21. [DONE] Highlight Tanmany and Rahul in leaderboard too.
+7.  [TIMING] Selection sort / quick sort crossing is not well timed ~2:00
+13. [TIMING] Slight discrepancy between audio and video in radix sort
+18. [DONE] In impossible trinity, show a growing arrow then shrink it
+20. [DONE] Separate scene for good bye
+2. [DONE] After Mahesh, Suresh, you say "and so on". There can be animation there.
+23. [DONE] In sorting algo animation, 1 array should be red, other 4 yellow
+24. [TIMING] When you are illustrating how stability is destroyed, in StableSort, you are drawing array too late.
+25. [DONE] Minku's alignment and serial no suggestion.
+2.  [DONE] What makes sorting algo stable? is too short
+8.  What's a big deal 18_1 and 18_2 might become one..."An 18 is an 18"
+9.  Bag idea is not clear
+16. Finding another 18 takes O(n) time: show animation
+17. Some animation for no free lunch. Maybe a scale animation

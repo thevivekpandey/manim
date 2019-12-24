@@ -406,7 +406,7 @@ class ClarifyInputAndOutput(GeneralizeToComplexFunctions):
             "rate_func": lambda t: smooth(t, 1),
         }
         self.play(
-            ApplyMethod(input_tracker.set_value, 1, **kw),
+            #ApplyMethod(input_tracker.set_value, 1, **kw),
             ShowCreation(path.copy(), remover=True, **kw),
         )
         self.add(path)

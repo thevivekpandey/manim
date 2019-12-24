@@ -134,7 +134,7 @@ HIGH_QUALITY_CAMERA_CONFIG = {
 MEDIUM_QUALITY_CAMERA_CONFIG = {
     "pixel_height": 720,
     "pixel_width": 1280,
-    "frame_rate": 30,
+    "frame_rate": 60,
 }
 
 LOW_QUALITY_CAMERA_CONFIG = {
@@ -142,11 +142,15 @@ LOW_QUALITY_CAMERA_CONFIG = {
     "pixel_width": 854,
     "frame_rate": 15,
 }
-
 VERY_LOW_QUALITY_CAMERA_CONFIG = {
     "pixel_height": 180,
     "pixel_width": 320,
-    "frame_rate": 8,
+    "frame_rate": 15,
+}
+LOW_RES_HIGH_FRAME_RATE_CONFIG = {
+    "pixel_height": 180,
+    "pixel_width": 320,
+    "frame_rate": 60,
 }
 
 DEFAULT_PIXEL_HEIGHT = PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_height"]
