@@ -6,7 +6,8 @@ class ShuffleThroughAllSequences(Scene):
     CONFIG = {
         "nb_coins" : 20,
         "run_time" : 5,
-        "fps" : int(1.0/PRODUCTION_QUALITY_FRAME_DURATION),
+        #"fps" : int(1.0/PRODUCTION_QUALITY_FRAME_DURATION),
+         "fps": 60,
         "coin_size" : 0.5,
         "coin_spacing" : 0.65
     }
