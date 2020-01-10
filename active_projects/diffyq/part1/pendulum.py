@@ -343,6 +343,7 @@ class ThetaVsTAxes(Axes):
             if graph.time - graph.time_of_last_addition >= t_step:
                 graph.all_coords.append(new_coords)
                 graph.time_of_last_addition = graph.time
+            print(new_coords)
             points = [
                 self.coords_to_point(*coords)
                 for coords in [*graph.all_coords, new_coords]
